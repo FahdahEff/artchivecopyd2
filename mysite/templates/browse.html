@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+
+
+
+
+<!--from hhheeerrrrrrreeee-->
+  <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:1000px; background-color:#F5F5F5;" id="band" background-color>
+
+
+      Search for artwork:
+<form id="searchform" action="{% url 'blog_search_list_view' %}" method="get" accept-charset="utf-8">
+      <button class="searchbutton" type="submit">
+        <i class="fa fa-search"></i>
+      </button>
+      <input class="searchfield" id="searchbox" name="q" type="text" placeholder="Search">
+    </form>
+
+    {% if art_list %}
+
+    {% for art in art_list %}
+            <form action="" method="post" style="display: inline;">
+                  {% csrf_token %}
+
+
+
+
+
+            <br>
+            <BR>
+            <img style="width: 700px;" src="{{ art.artImage.url }}"  >
+            <br> <br>
+            <!--<h2>{{ art.id}}</h2>-->
+            <a href="{% url 'displayThis' art.id %}"> Inspect</a>
+            <h2>Title: {{ art.artName }}</h2>
+            <p><strong> Size: {{ art.artSize }}</strong></p>
+            <p><strong> Price: {{ art.artPrice }}$</strong></p>
+
+
+
+            <br>
+
+
+            {% endfor %}
+
+    {% else %}
+    <h1 class="textNoUsersfound" > </h1>
+
+    {% endif %}
+
+
+
+
+            </form>
+
+
+{% endblock %}
+
+
+
+
+

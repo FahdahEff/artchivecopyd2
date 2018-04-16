@@ -1,0 +1,118 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+        {% load staticfiles %}
+
+    <title>Images</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <script src="{% static 'js/jquery-1.11.1.js' %}" ></script>
+<script src="{% static 'js/rango-jquery.js' %}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<script src="{% static 'js/button' %}" type="text/javascript"></script>
+<script>
+
+ $(function(){
+   $(document).one('click', '.like-review', function(e) {
+      $(this).html('<i class="fa fa-heart" aria-hidden="true"></i> You liked this');
+      $(this).children('.fa-heart').addClass('animate-like');
+   });
+});
+
+
+
+
+function add(){
+
+var text = document.getElementById("comment").value;
+document.getElementById("here").innerHTML =text;
+
+}
+
+
+
+function yarb(){
+
+window.alert("art work was ordered")
+
+}
+
+
+ </script>
+
+<script>
+
+    document.getElementById("no").onclick = changeColor;
+
+    function changeColor() {
+        document.getElementById("no").style.backgroundColor = "green";
+    }
+
+</script>
+</head>
+<body>
+
+
+
+<div id ="bod">
+
+<br><br>
+
+
+  <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:1000px; background-color:#F5F5F5;" id="band" background-color>
+
+
+
+{% if art_list %}
+    {% for are in art_list %}
+            <form action="" method="post" style="display: inline;">
+                  {% csrf_token %}
+
+
+
+
+            <h2>Piece name: {{ are.artName }}</h2>
+            <img src="{{ are.artImage.url }}" >
+            <p><strong>Piece size: {{ are.artSize }}</strong></p>
+            <p><strong>Piece price: {{ are.artPrice }}</strong></p>
+
+            <br>
+            <BR>
+
+
+
+
+
+    </form>
+
+
+ {% endfor %}
+
+
+    {% else %}
+    <h1 class="textNoUsersfound" >No products found.</h1>
+
+    {% endif %}
+        </li>
+         </ul>
+            </form>
+
+
+
+</div>
+
+
+
+
+
+</div>
+</body>
+</html>

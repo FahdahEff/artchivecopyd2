@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block content %}
+<html lang="en">
+{% load staticfiles %}
+<head>
+
+   <style>
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
+.bg {
+    /* The image used */
+    <!--background-image: url("img_girl.jpg");-->
+
+    /* Full height */
+    height: 100%;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.cen { margin-left:460px;
+margin-bottom: 100px;}
+
+        button{
+ margin-left:30px; border-radius: 6px; background-color: green;
+    color: white; width: 200px;
+    padding: 12px 10px; border: none;
+    border-radius: 4px;
+    cursor: pointer;
+        }
+.checked {
+    color: orange;
+
+</style>
+
+  </head>
+
+
+</head>
+
+
+<body >
+  <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:1000px; background-color:#F5F5F5;" id="band" background-color>
+
+<h1>Send a complaint: </h1>
+
+{% if error_message %}
+    <p><strong>{{ error_message }}</strong></p>
+{% endif %}
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+
+
+{% for field in form %}
+    <div class="form-group">
+        <label style="font-size: 20px;color: black; " >{{ field.label_tag }}</label>
+        <div class="input" >{{ field }}</div>
+
+        <br>
+    </div>
+{% endfor %}
+<br>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-success">Submit</button>
+        </div>
+    </div>
+</form>
+
+</body>
+{% endblock %}
+
+</div>
+</html>

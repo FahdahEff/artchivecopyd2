@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:1000px; background-color:#F5F5F5;" id="band" background-color>
+
+<style>
+        button,input{
+ margin-left:20px; border-radius: 6px; background-color: green;
+    color: white; width: 200px;
+    padding: 12px 10px; border: none;
+    border-radius: 4px;
+    cursor: pointer;
+        }
+        li{visibility: hidden}
+ </style>
+    <h1>New comment</h1>
+    <form method="POST" class="post-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+            <br>
+        <button type="submit" class="save btn btn-default">Send</button>
+    </form>
+
+
+    {% if Comments_list %}
+
+
+{% for comment in Comments_list %}
+             <div class="comment">
+              <h2>{{ comment.comment }}</h2>
+              <p>{{ linebreaks }}</p>
+                </div>
+
+
+            {% endfor %}
+
+    {% else %}
+
+    <h1 class="textNoUsersfound" > no comments yet </h1>
+
+    {% endif %}
+
+{% endblock %}
+  </div>
+
+
+

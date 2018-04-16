@@ -1,0 +1,36 @@
+
+
+{% extends 'base.html' %}
+
+{% block content %}
+<html lang="en">
+<body>
+  <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:1000px; background-color:#F5F5F5;" id="band" background-color>
+
+{% load staticfiles %}
+
+ {% if Review_list %}
+{% for review in Review_list %}
+
+          <h2>{{ review.desc }}</h2>
+
+{% endfor %}
+
+{% else %}
+    <h1 class="textNoUsersfound">No reviews found.</h1>
+
+    {% endif %}
+
+ {% if Complaint_list %}
+{% for complaint in Complaint_list %}
+          <h2>{{ complaint.desc }}</h2>
+{% endfor %}
+{% else %}
+    <h1 class="textNoUsersfound">No complaints found.</h1>
+
+    {% endif %}
+
+{% endblock %}
+  </div>
+</body>
+</html>

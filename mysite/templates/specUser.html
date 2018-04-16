@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>my art work:</h2>
+
+
+    {% if art_list %}
+
+    {% for art in art_list %}
+
+
+            <h2>{{ art.id}}</h2>
+            <h2>{{ art.artName }}</h2>
+            <img src="{{ art.artImage.url }}" >
+            <p><strong>{{ art.artSize }}</strong></p>
+            <p><strong>{{ art.artPrice }}</strong></p>
+
+
+
+<form action="{% url 'Delete' art.id %}" method="post">
+               {% csrf_token %}
+               {{ form.as_p }}
+    <!--<p>Are you sure you want to delete "{{ art.artName }}"?</p>-->
+               <input type="submit" value="Delete" />
+           </form>
+
+
+
+            <!--actual delete-->
+            <form action="{% url 'modify' art.id %}" method="post">
+                {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Delete" />
+</form>
+
+            <!--actual modify-->
+
+            <form action="{% url 'modify2' art.id %}" method="post">
+                {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Modify" />
+</form>
+
+
+   {% endfor %}
+
+
+{% else %}
+<h3> there are no art works yet!</h3>
+{%endif%}
+
+
+
+
+
+     <form action="{% url 'upload'  %}" method="post" style="display: inline;"
+     >
+            {% csrf_token %}
+            <button   type="submit">Add aaa new Product</button>
+        </form>
+
+{% endblock %}

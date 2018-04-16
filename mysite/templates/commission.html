@@ -1,0 +1,68 @@
+
+{% extends 'base.html' %}
+{% block content %}
+  <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:1000px; background-color:#F5F5F5;" id="band" background-color>
+
+
+<style>
+        button,input{
+ margin-left:20px; border-radius: 6px; background-color: green;
+    color: white; width: 200px;
+    padding: 12px 10px; border: none;
+    border-radius: 4px;
+    cursor: pointer;
+        }
+ </style>
+    <h1> Request List: </h1>
+
+
+
+
+    {% if request_list %} {% for request in request_list %}
+
+
+      <ul id="list">
+
+        <li>
+          <h2>Title: {{ request.name }}</h2>
+            <h2> Description: {{ request.desc}}</h2>
+             <h2> Time:{{ request.time}}</h2>
+                         <h2>{{ request.owner}}</h2>
+
+             <h2> Owner:{{ request.owner2}}</h2>
+
+
+
+
+
+          <!--<input name="username" value="{{ user.username }}" hidden>-->
+             <form action="" method="post" style="display: inline;">
+      {% csrf_token %}
+
+          <button type="submit"> accept </button>
+             </form>
+
+                 <form action="{% url 'DeleteReq' request.id %}" method="post">
+                {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="reject" />
+
+
+                 </form>
+          <br>
+          <BR>
+
+
+        </li>
+      </ul>
+
+
+
+    {% endfor %} {% else %}
+    <h1 class="textNoUsersfound">you don't have any commissions.</h1>
+
+    {% endif %}
+
+{% endblock %}
+
+  </div>

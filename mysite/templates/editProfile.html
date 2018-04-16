@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block content %}
+<html lang="en">
+{% load staticfiles %}
+
+<head>
+
+        <style>
+        button{
+ margin-left:30px; border-radius: 6px; background-color: green;
+    color: white; width: 200px;
+    padding: 12px 10px; border: none;
+    border-radius: 4px;
+    cursor: pointer;
+        }
+ </style>
+</head>
+
+
+
+
+
+<body >
+  <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:1000px; background-color:#F5F5F5;" id="band" background-color>
+
+
+<h1>Edit profile</h1>
+
+{% if error_message %}
+    <p><strong>{{ error_message }}</strong></p>
+{% endif %}
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+{% for field in form %}
+    <div class="form-group">
+        <label style="font-size: 20px;color: black; " >{{ field.label_tag }}</label>
+        <div class="input" >{{ field }}</div>
+    </div>
+{% endfor %}
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-success">Submit</button>
+        </div>
+    </div>
+</form>
+  </div>
+</body>
+
+
+</html>
+{% endblock %}

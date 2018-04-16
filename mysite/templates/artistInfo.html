@@ -1,0 +1,68 @@
+
+{% extends 'base.html' %}
+{% block content %}
+
+
+
+
+  <style>
+    button {
+      margin-left: 50px;
+      border-radius: 6px;
+      background-color: green;
+      color: white;
+      width: 200px;
+      padding: 12px 10px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    } </style>
+  <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:1000px; background-color:#F5F5F5;" id="band" background-color>
+   <h1> Artists List: </h1>
+    {% if user_list %} {% for user in user_list %}
+    <form action="{% url 'requesting' %}" method="GET" style="display: inline;">
+      {% csrf_token %}
+
+      <ul id="list">
+
+                        <a href="{% url 'displayArtist' user.id %}">{{ user.username }}</a>
+
+          <h2>{{ user.username }}</h2>
+
+          <input name="username" value="{{ user.username }}" hidden>
+
+          <button type="submit"> Request artwork </button>
+          <br>
+
+
+
+      </ul>
+    </form>
+
+         <form action="{% url 'createComplaint' %}" method="post" style="display: inline;">
+           {% csrf_token %}
+
+            <ul id="listt">
+          <button type="submit"> Send complaint </button>
+          <br>
+          <BR>
+            </ul>
+           </form>
+      <form action="{% url 'createReview' %}" method="post" style="display: inline;">
+           {% csrf_token %}
+
+            <ul id="listtt">
+          <button type="submit"> Review </button>
+          <br>
+          <BR>
+            </ul>
+           </form>
+
+
+    {% endfor %} {% else %}
+    <h1 class="textNoUsersfound">No artists found.</h1>
+
+    {% endif %}
+
+{% endblock %}
+  </div>

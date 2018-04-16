@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+
+    {% if user_list %}
+{% for user in user_list %}
+
+          <h2>{{ user.username }}</h2>
+{% endfor %}
+{% else %}
+    <h1 class="textNoUsersfound">No artists found.</h1>
+
+    {% endif %}
+
+
+ {% if Review_list %}
+{% for review in Review_list %}
+
+          <h2>{{ review.desc }}</h2>
+
+{% endfor %}
+
+{% else %}
+    <h1 class="textNoUsersfound">No one has reviewed this artist.</h1>
+
+    {% endif %}
+
+ {% if Complaint_list %}
+{% for complaint in Complaint_list %}
+          <h2>{{ complaint.desc }}</h2>
+{% endfor %}
+{% else %}
+    <h1 class="textNoUsersfound">No complaints exists.</h1>
+
+    {% endif %}
+
+
+
+{% endblock %}
+
+
+
+
+

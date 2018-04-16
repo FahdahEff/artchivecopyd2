@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+
+<style>
+        button,input{
+ margin-left:20px; border-radius: 6px; background-color: green;
+    color: white; width: 200px;
+    padding: 12px 10px; border: none;
+    border-radius: 4px;
+    cursor: pointer;
+        }
+ </style>
+
+  <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:1000px; background-color:#F5F5F5;" id="band" background-color>
+
+<!--from hhheeerrrrrrreeee-->
+
+<!--<form id="searchform" action="{% url 'blog_search_list_view' %}" method="get" accept-charset="utf-8">-->
+      <!--<button class="searchbutton" type="submit">-->
+        <!--<i class="fa fa-search"></i>-->
+      <!--</button>-->
+      <!--<input class="searchfield" id="searchbox" name="q" type="text" placeholder="Search">-->
+    <!--</form>-->
+
+    {% if art_list %}
+
+    {% for art in art_list %}
+            <form action="" method="post" style="display: inline;">
+                  {% csrf_token %}
+
+         <ul id="list">
+
+        <li>
+            <!--<h2>{{ art.id}}</h2>-->
+            <img style="width: 700px;" src="{{ art.artImage.url }}" >
+      <h2>Title: {{ art.artName }}</h2>
+            <p><strong> Size: {{ art.artSize }}</strong></p>
+            <p><strong> Price: {{ art.artPrice }}$</strong></p>
+
+            <br>
+            <BR>
+
+            <!--استااال-->
+
+          <form action="{% url 'Delete' art.id %}" method="post">
+               {% csrf_token %}
+               {{ form.as_p }}
+    <!--<p>Are you sure you want to delete "{{ art.artName }}"?</p>-->
+               <input type="submit" value="Delete" />
+           </form>
+
+
+<form action=" " method="post">
+                {% csrf_token %}
+    {{ form.as_p }}
+
+    <input type="submit" value="fake Comment" style= "visibility: hidden;" />
+</form>
+
+              <form action="{% url 'createComment' art.id  %}" method="post">
+                {% csrf_token %}
+    {{ form.as_p }}
+
+    <input type="submit" value="Comment" />
+</form>
+<br>
+
+             <form action="{% url 'Shopping' art.id %}" method="post">
+                {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Buy" />
+</form>
+
+            {% endfor %}
+
+
+
+    {% else %}
+    <h1 class="textNoUsersfound" > </h1>
+
+    {% endif %}
+
+
+
+</li>
+         </ul>
+            </form>
+
+
+{% endblock %}
+
+</div>

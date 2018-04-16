@@ -1,0 +1,75 @@
+
+{% extends 'base.html' %}
+{% block content %}
+
+
+    <style>
+        input,button{
+ margin-left:20px; border-radius: 6px; background-color: green;
+    color: white; width: 200px;
+    padding: 12px 10px; border: none;
+    border-radius: 4px;
+    cursor: pointer;
+        }
+ </style>
+
+
+<script>
+var total=0;
+
+</script>
+
+  <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:1000px; background-color:#F5F5F5;" id="band" background-color>
+
+    <h1> My Cart: </h1>
+
+
+
+
+    {% if shopping_list %}
+    {% for shopping in shopping_list %}
+
+
+
+           <!--<h2>ID: {{ shopping.id}}</h2>-->
+            <img style="width: 700px;" src="{{ shopping.artImage.url }}" >
+      <h2>Title: {{ shopping.artName }}</h2>
+
+            <p><strong> Size: {{ shopping.artSize }}</strong></p>
+            <p><strong> Price: {{ shopping.artPrice }}$</strong></p>
+<script> total+= {{ shopping.artPrice }}; </script>
+
+
+
+
+ <form action="{% url 'backToArt' shopping.id %}" method="post">
+                {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Delete" />
+</form>
+
+    {% endfor %}
+<br> <br>
+   <strong> Total: </strong> <span id="demo"> </span>
+        <script> document.getElementById("demo").innerHTML = total;</script>
+   <br>
+
+ <form action="{% url 'order' %}" method="GET" style="display: inline;">
+                 {% csrf_token %}
+
+    <button style=" margin-left: 30px; border-radius: 6px; background-color:green;
+    color: white; width: 200px;
+    padding: 12px 20px; border: none;
+    border-radius: 4px;
+    cursor: pointer;"> Check Out </button>
+
+          </form>
+     {% else %}
+    <h1 class="textNoUsersfound">you don't have any products in your shopping cart</h1>
+
+    {% endif %}
+
+{% endblock %}
+
+  </div>
+

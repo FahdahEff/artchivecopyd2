@@ -1,0 +1,7 @@
+
+
+function change(){
+    document.getElementById("Comm").style.backgroundColor="green";
+
+
+}

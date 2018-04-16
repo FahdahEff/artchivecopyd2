@@ -1,0 +1,129 @@
+
+
+{% extends 'base.html' %}
+
+{% block content %}
+<html lang="en">
+{% load staticfiles %}
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+
+      <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="{% static 'js/jquery-1.11.1.js' %}" ></script>
+    <script src="{% static 'js/rango-jquery.js' %}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+    <script src="{% static 'js/button' %}" type="text/javascript"></script>
+
+
+
+
+    <script>
+  function change(){
+
+var div = document.getElementById("com"),
+    toggle = false;
+
+div.onclick = function() {
+  toggle = !toggle;
+  div.style.background = toggle? "#4CAF50": "#f44336";
+}
+
+div.style.background = "#f44336";
+
+
+        }
+
+
+</script>
+    <style>
+        input{
+ margin-left:20px; border-radius: 6px; background-color: red;
+    color: white; width: 200px;
+    padding: 12px 10px; border: none;
+    border-radius: 4px;
+    cursor: pointer;
+        }
+          h2 { text-transform: capitalize;}
+ </style>
+    <style>
+        button{
+ margin-left:20px; border-radius: 6px; background-color: green;
+    color: white; width: 200px;
+    padding: 12px 10px; border: none;
+    border-radius: 4px;
+    cursor: pointer;
+        }
+ </style>
+
+</head>
+<body>
+
+<!-- Navbar -->
+
+<br><br>
+
+
+
+
+  <!-- The Band Section -->
+  <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:1000px; background-color:#F5F5F5;" id="band" background-color>
+       <h1>Hey, {{ user.username }}!</h1>
+
+
+
+<h2>my info:</h2>
+
+
+    {% if Info_list %}
+
+
+            <h2>email: {{ Info_list.last.Email }}</h2>
+              <h2>First name: {{ Info_list.last.First_Name }}</h2>
+             <h2>last name: {{ Info_list.last.Last_Name }}</h2>
+            <h2>country: {{ Info_list.last.Country }}</h2>
+ <h2>age: {{ Info_list.last.Age}}</h2>
+      <h2> gender: {{ Info_list.last.gender }}</h2>
+
+
+
+
+{% else %}
+<h3> you have no info!</h3>
+
+{%endif%}
+
+<br>
+
+     <form action="{% url 'DeleteAcc' user.id %}" method="post">
+                {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Delete" />
+
+
+      <br>
+     </form>
+
+<br>
+<form action="{% url 'modifyProfile' user.id %}" method="post" style="display: inline;"
+    >
+        {% csrf_token %}
+                {% include 'form-template.html' %}
+
+            {{ form.as_p  }}
+
+        <button type="submit">Edit Profile</button>
+    </form>
+
+
+
+  </div>
+</body>
+{% endblock %}
