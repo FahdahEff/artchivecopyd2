@@ -1123,9 +1123,7 @@ $('#name').focus(function() {
             <p><strong>Size: {{ art.artSize }}</strong></p>
             <p><strong> Price: {{ art.artPrice }}$</strong></p>
             <p><strong> Comments: {{ art.Comments.comment }}</strong></p>
-
-
- {% if Comments_list %}
+{% if Comments_list %}
 
 
 {% for comment in Comments_list %}
@@ -1142,6 +1140,15 @@ $('#name').focus(function() {
       <br>
 
     {% endif %}
+           <form action="{% url 'createComment' art.id  %}" method="post">
+                {% csrf_token %}
+    {{ form.as_p }}
+
+    <input type="submit" value="Comment" />
+</form>
+
+
+
 
 <form action="{% url 'Delete' art.id %}" method="post">
                {% csrf_token %}
@@ -1180,98 +1187,6 @@ $('#name').focus(function() {
 <hr noshade="5px;">
 
 
-    <!-- About Section -->
-    <section id="about">
-                    <hr noshade="5px;">
-
-        <h2 class="w3-wide">The IDEA</h2>
-
-
-        <div class="container">
-            <div class="row">
-
-            </div>
-                <div class="w3-row w3-padding-32">
-
-            <!--<div class="row">-->
-                <div class="col-lg-12">
-                    <ul class="timeline">
-
-                        <li>
-                            <div class="w3-third">
-
-                                <img class="w3-round w3-margin-bottom"  style="width: 200px;" src="https://image.flaticon.com/icons/svg/525/525710.svg" alt="">
-                            </div>
-
-                            <div class="timeline-panel">
-                                <div class="timeline-heading">
-                                    <h4>Octoper 2017</h4>
-                                    <h4 class="subheading">Our Humble Beginnings</h4>
-                                </div>
-                                <div class="timeline-body">
-                                    <p class="text-muted">It started as swe quilty assurance project! </p>
-                                </div>
-                            </div>
-                        </li>
-
-
-                           <li>
-                            <div class="w3-third">
-
-                                <img class="img-circle img-responsive" style="width: 200px;" src="https://image.flaticon.com/icons/svg/525/525712.svg" alt="">
-                            </div>
-
-                            <div class="timeline-panel">
-                                <div class="timeline-heading">
-                                    <h4>December 2017</h4>
-                                    <h4 class="subheading">An idea was Born</h4>
-                                </div>
-                                <div class="timeline-body">
-                                    <p class="text-muted">We decided that we wanted to implement it as a fully functional website! </p>
-                                </div>
-                            </div>
-                        </li>
-
-                               <li>
-                            <div class="w3-third">
-
-                                <img class="img-circle img-responsive" style="width: 200px;" src="https://image.flaticon.com/icons/svg/525/525728.svg" alt="">
-                            </div>
-
-                            <div class="timeline-panel">
-                                <div class="timeline-heading">
-                                    <h4>January 2018</h4>
-                                </div>
-                                <div class="timeline-body">
-                                    <p class="text-muted">An oppertunity was found in our swe444 course! </p>
-                                </div>
-                            </div>
-                        </li>
-
-
-                              <li>
-                            <div class="w3-third">
-
-                                <img class="img-circle img-responsive"  style="width: 200px;"src="https://image.flaticon.com/icons/svg/525/525694.svg" alt="">
-                            </div>
-
-                            <div class="timeline-panel">
-                                <div class="timeline-heading">
-                                    <h4>April 2018</h4>
-                                </div>
-                                <div class="timeline-body">
-                                    <p class="text-muted">We did it! </p>
-                                </div>
-                            </div>
-                        </li>
-
-                    </ul>
-
-                </div>
-            </div>
-            <hr noshade="5px;">
-        </div>
-    </section>
 
 
 

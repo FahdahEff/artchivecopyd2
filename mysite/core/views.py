@@ -42,7 +42,7 @@ def Rev_Com(request):
         join_obj5 = Complaint.objects.filter(owner=request.user)
 
         context = {'Review_list': join_obj4,'Complaint_list': join_obj5}
-        return render(request, 'Rev&Com.html',context)
+        return render(request, 'Rev_Com.html',context)
 
 
 def signup(request):
@@ -160,7 +160,9 @@ class Delete(DeleteView):
 def delete(request, id):
    art = Artwork.objects.get(pk = id)
    art.delete()
-   return HttpResponse('deleted')
+   return render(request, "home.html")
+
+   # return HttpResponse('deleted')
 
 
 

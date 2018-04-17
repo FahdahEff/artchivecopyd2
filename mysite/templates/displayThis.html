@@ -44,13 +44,14 @@
 
             <!--استااال-->
 
+            <div id="divCheckbox" style="display: none;">
           <form action="{% url 'Delete' art.id %}" method="post">
                {% csrf_token %}
                {{ form.as_p }}
     <!--<p>Are you sure you want to delete "{{ art.artName }}"?</p>-->
                <input type="submit" value="Delete" />
            </form>
-
+            </div>
 
 <form action=" " method="post">
                 {% csrf_token %}
